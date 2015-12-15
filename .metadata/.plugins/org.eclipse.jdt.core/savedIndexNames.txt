@@ -4,7 +4,6 @@ INDEX VERSION 1.127+F:\project\Egen Project\User-Managemet Spark RestApp\.metada
 1711765710.index
 1094395942.index
 4110124015.index
-1573264569.index
 791467975.index
 1524953806.index
 1000147613.index

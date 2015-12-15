@@ -3,7 +3,7 @@ import static spark.Spark.*;
 
 import com.user.controller.UserController;
 
-import com.user.service.UserService;
+import user.com.service.UserService;
 public class Main {
 
 	 public static void main(String[] args) {
