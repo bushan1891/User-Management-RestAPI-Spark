@@ -1,0 +1,14 @@
+package com.user.controller;
+
+import user.com.service.UserService;
+
+public class UserController {
+
+	public UserController(UserService userService) {
+		
+		
+		
+		
+	}
+
+}

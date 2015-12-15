@@ -1,0 +1,58 @@
+package com.user.controller;
+
+import user.com.service.UserService;
+import static spark.Spark.*;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.user.model.User;
+import com.user.util.*;
+public class UserController {
+
+	public UserController(final UserService userService) {
+		
+		get("/users", new Route() {
+		      @Override
+		      public Object handle(Request request, Response response) throws Exception {
+		        // process request  
+		        return ToJson.dataToJson(userService.fetchAll());
+		      }
+		    });
+	
+		put("/put/:id", new Route(){
+
+			@Override
+			public Object handle(Request request, Response response) throws Exception {
+				String id = request.params(":id");
+				 response.body("success");
+				System.out.println("i was called put");
+				return "hi";
+			}
+			
+		});
+		
+	   post("/posts", (request, response) -> {
+            try {
+            	Gson gson = new Gson();
+            User user = gson.fromJson(request.body(),User.class);
+              
+            	/* User user = new ObjectMapper().readValue(request.body(), User.class);*/
+                userService.create(user);
+                
+            } catch (JsonParseException jpe) {
+               // response.status(HTTP_BAD_REQUEST);
+                return " fail";
+            }
+			return "post done";
+        });
+        
+		
+		
+		
+		
+	}
+
+}

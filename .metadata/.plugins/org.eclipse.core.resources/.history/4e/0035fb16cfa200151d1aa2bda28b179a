@@ -1,0 +1,13 @@
+package com.user.rest;
+import static spark.Spark.*;
+
+import user.com.service.UserService;
+public class Main {
+
+	 public static void main(String[] args) {
+		 
+		 UserService usr = new UserService();
+	        get("/hello", (req, res) -> "");
+	    }
+
+}

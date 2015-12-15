@@ -1,0 +1,41 @@
+package com.user.controller;
+
+import user.com.service.UserService;
+import static spark.Spark.*;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.user.model.User;
+import com.user.util.*;
+public class UserController {
+
+	public UserController(final UserService userService) {
+		get("/users", new Route() {
+		      @Override
+		      public Object handle(Request request, Response response) throws Exception {
+		        // process request  
+		        return ToJson.dataToJson(userService.fetchAll());
+		      }
+		    });
+		
+		post("/posts", (request, response) -> {
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                User user = new ObjectMapper().readValue(request.body(), User.class);
+                
+            } catch (JsonParseException jpe) {
+               // response.status(HTTP_BAD_REQUEST);
+                return " fail";
+            }
+			return "post done";
+        });
+        
+		
+		
+		
+	}
+
+}
